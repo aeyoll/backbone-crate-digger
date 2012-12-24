@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<title></title>
+		<meta name="description" content=""/>
+		<meta name="viewport" content="width=device-width"/>
+		<link rel="stylesheet" href="styles/main.css"/>
+
+	</head>
+	<body>
+		<!--[if lt IE 7]>
+			<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+		<![endif]-->
+		
+		<div id="viewport">
+			<header>
+				<h1>Crate Digger</h1>
+			</header>
+			<div id="wantlist"></div>
+		</div>
+
+		<!-- Add your site or application content here -->
+		<script id="releaseTemplate" type="text/template">
+			<img src="<%= thumb %>" alt="<%= title %>" />
+			<h1><%= title %></h1>
+		</script>
+
+		<!-- build:js scripts/scripts.js -->
+		<script src="scripts/vendor/jquery.min.js"></script>
+		<script src="scripts/vendor/lodash.min.js"></script>
+		<script src="scripts/vendor/backbone-min.js"></script>
+		<script src="scripts/vendor/backbone.localStorage.js"></script>
+		<script src="scripts/main.js"></script>
+
+		<script src="scripts/views/application-view.js"></script>
+		<script src="scripts/views/release-view.js"></script>
+		<script src="scripts/views/wantlist-view.js"></script>
+
+		<script src="scripts/models/application-model.js"></script>
+		<script src="scripts/models/release-model.js"></script>
+
+		<script src="scripts/collections/application-collection.js"></script>
+		<script src="scripts/collections/wantlist-collection.js"></script>
+
+		<script src="scripts/routes/application-router.js"></script>
+		<!-- endbuild -->
+
+		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID.
+		<script>
+			var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+			(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+			g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+			s.parentNode.insertBefore(g,s)}(document,'script'));
+		</script> -->
+	</body>
+</html>

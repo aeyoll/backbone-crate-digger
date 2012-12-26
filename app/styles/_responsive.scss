@@ -1,0 +1,15 @@
+img {
+	max-width: 100%;
+}
+
+@media (min-width: 300px) {
+	.media .pull-left {
+		max-width: 100px;
+	}
+}
+
+@media (min-width: 800px) {
+	.media .pull-left {
+		max-width: none;
+	}
+}

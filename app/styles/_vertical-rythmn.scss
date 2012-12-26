@@ -1,0 +1,90 @@
+// Inspired by Vertical Rhythm Tool - http://soqr.fr/vertical-rhythm/
+
+@import "compass/typography/vertical_rhythm";
+
+@include establish-baseline;
+
+p, ul, ol, dl, blockquote, pre, td, th {
+	font-size: $base-font-size;
+	line-height: $base-line-height;
+	margin: $base-line-height-em 0;
+}
+label, textarea {
+	font-size: $base-font-size;
+	line-height: $base-line-height;
+}
+h1, .h1-like {
+	@include adjust-font-size-to($base-font-size + 12);
+	@include rhythm(2, 0, 0, 1, $base-font-size + 12);
+}
+h2, .h2-like {
+	@include adjust-font-size-to($base-font-size + 10);
+	@include rhythm(2, 0, 0, 1, $base-font-size + 10);
+}
+h3, .h3-like {
+	@include adjust-font-size-to($base-font-size + 8);
+	@include rhythm(2, 0, 0, 1, $base-font-size + 8);
+}
+h4, .h4-like {
+	@include adjust-font-size-to($base-font-size + 6);
+	@include rhythm(2, 0, 0, 1, $base-font-size + 6);
+}
+h5, .h5-like {
+	@include adjust-font-size-to($base-font-size + 4);
+	@include rhythm(2, 0, 0, 1, $base-font-size + 4);
+}
+h6, .h6-like {
+	@include adjust-font-size-to($base-font-size + 2);
+	@include rhythm(2, 0, 0, 1, $base-font-size + 2);
+}
+.smaller {
+	@include adjust-font-size-to($base-font-size - 4);
+	@include rhythm(1, 0, 0, 1, $base-font-size - 4);
+}
+.small {
+	@include adjust-font-size-to($base-font-size - 2);
+	@include rhythm(1, 0, 0, 1, $base-font-size - 2);
+}
+.big {
+	@include adjust-font-size-to($base-font-size + 2);
+	@include rhythm(1, 0, 0, 1, $base-font-size + 2);
+}
+.bigger {
+	@include adjust-font-size-to($base-font-size + 4);
+	@include rhythm(1, 0, 0, 1, $base-font-size + 4);
+}
+.biggest {
+	@include adjust-font-size-to($base-font-size + 6);
+	@include rhythm(1, 0, 0, 1, $base-font-size + 6);
+}
+
+// avoid collapsing margins
+h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
+	margin-top: 0;
+}
+p:not(:first-child):last-child, ul:not(:first-child):last-child, ol:not(:first-child):last-child, dl:not(:first-child):last-child, blockquote:not(:first-child):last-child, pre:not(:first-child):last-child, table:not(:first-child):last-child, form:not(:first-child):last-child   {
+	margin-bottom: 0;
+}
+//avoid supp margin on nested elements
+li p, li ul {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+textarea, table, td, th, code, pre, samp, div, p {
+	word-wrap: break-word;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	-o-hyphens: auto;
+	hyphens: auto;
+}
+code, pre, samp {
+	white-space: pre-wrap;
+	font-family: consolas, 'DejaVu Sans Mono', courier, monospace;
+}
+code {
+	line-height: 1em;
+}
+table {
+	margin-bottom: $base-line-height-em;
+}

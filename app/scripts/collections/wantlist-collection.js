@@ -20,8 +20,21 @@ crateDigger.Collections.WantlistCollection = Backbone.Collection.extend({
 	parse: function(data) {
 		var releases = [];
 		var results = data.data.wants;
+		var that = this;
+
 		_.each(results, function(item) {
-			releases.push(item.basic_information);
+			infos = item.basic_information;
+			release = new crateDigger.Models.ReleaseModel({
+				id: infos.id,
+				artists: infos.artists,
+				formats: infos.formats,
+				thumb: infos.thumb,
+				title: infos.title,
+				year: infos.year
+			});
+			releases.push(release);
+			that.add(release);
+			release.save();
 		});
 		return releases;
 	}

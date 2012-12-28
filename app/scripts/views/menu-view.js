@@ -19,11 +19,13 @@ crateDigger.Views.menuView = Backbone.View.extend({
 		return this;
 	},
 	submit: function (a) {
-		if (a.which === 13) a.preventDefault();
-		crateDigger.navigate("#/search/" + $(a.target).val(), !0);
-		$(a.target).blur();
-		$(a.target).val(null);
-		this.toggleViewport();
+		if (a.which === 13) {
+			a.preventDefault();
+			router.navigate('#/search/' + $(a.target).val(), !0);
+			$(a.target).blur();
+			$(a.target).val(null);
+			this.toggleViewport();
+		}
 	},
 	toggleViewport: function () {
 		this.header.toggleViewport();

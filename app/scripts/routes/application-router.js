@@ -3,6 +3,7 @@ crateDigger.Routers.ApplicationRouter = Backbone.Router.extend({
 	routes: {
 		'': 'index',
 		'collection': 'collection',
+		'search/:query': 'search',
 		'wantlist': 'wantlist'
 	},
 	index: function() {
@@ -10,6 +11,10 @@ crateDigger.Routers.ApplicationRouter = Backbone.Router.extend({
 	collection: function() {
 		var collection = new crateDigger.Views.collectionView();
 		collection.render();
+	},
+	search: function(query) {
+		var search = new crateDigger.Views.searchView({query: query});
+		search.render();
 	},
 	wantlist: function() {
 		var wantlist = new crateDigger.Views.wantlistView();

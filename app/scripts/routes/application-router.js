@@ -12,6 +12,10 @@ crateDigger.Routers.ApplicationRouter = Backbone.Router.extend({
 		var collection = new crateDigger.Views.collectionView();
 		collection.render();
 	},
+	search: function(query) {
+		var search = new crateDigger.Views.searchView({query: query});
+		search.render();
+	},
 	wantlist: function() {
 		var wantlist = new crateDigger.Views.wantlistView();
 		wantlist.render();

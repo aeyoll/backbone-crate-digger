@@ -16,10 +16,11 @@ crateDigger.Collections.SearchCollection = Backbone.Collection.extend({
 		return $.ajax(params);
 	},
 	url : function() {
-		return 'http://api.discogs.com/database/search?type=release&q=' + this.query;
+		return 'http://api.discogs.com/database/search?type=release&q=' + this.query + '&per_page=' + this.per_page ;
 	},
 	initialize: function (models, options) {
 		this.query = _.escape(options.query);
+		this.per_page = 5;
 	},
 	parse: function(data) {
 		var releases = this.models;
@@ -38,6 +39,7 @@ crateDigger.Collections.SearchCollection = Backbone.Collection.extend({
 			releases.push(release);
 			that.add(release);
 		});
+
 		return releases;
 	}
 });

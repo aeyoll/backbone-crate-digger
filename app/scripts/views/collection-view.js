@@ -1,8 +1,7 @@
 crateDigger.Views.collectionView = Backbone.View.extend({
 	el: $('#content'),
 	initialize: function () {
-		var that = this;
-
+		this.$el.empty();
 		this.collection = new crateDigger.Collections.CollectionCollection([], { username : "aeyoll" });
 		this.listenTo(this.collection, 'add', this.renderRelease);
 		this.listenTo(this.collection, 'reset', this.renderCollection);

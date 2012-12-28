@@ -1,24 +1,29 @@
 crateDigger.Collections.WantlistCollection = Backbone.Collection.extend({
 	model: crateDigger.Models.ReleaseModel,
-	localStorage: new Backbone.LocalStorage("wantlist"),
+	localStorage: new Backbone.LocalStorage('wantlist'),
 	sync: function(method, model, options) {
 		var params = _.extend({
 			type: 'GET',
 			dataType: 'jsonp',
 			url: model.url(),
-			processData: false
+			processData: false,
+			beforeSend: function () {
+				$('#loading').show();
+			},
+			complete: function () {
+				$('#loading').hide();
+			}
 		}, options);
 		return $.ajax(params);
 	},
 	url : function() {
-		return "http://api.discogs.com/users/" + this.username + "/wants";
+		return 'http://api.discogs.com/users/' + this.username + '/wants';
 	},
 	initialize: function (models, options) {
 		this.username = options.username;
-		this.deferred = this.fetch();
 	},
 	parse: function(data) {
-		var releases = [];
+		var releases = this.models;
 		var results = data.data.wants;
 		var that = this;
 

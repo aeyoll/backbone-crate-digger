@@ -6,7 +6,7 @@
 @import "vertical-rythmn";
 
 * {
-	box-sizing: border-box;
+	@include box-sizing(border-box);
 }
 
 body {
@@ -15,16 +15,104 @@ body {
 	font-family: "Helvetica Neue", Arial, sans-serif;
 	text-shadow: 0 1px 0 #FFF;
 }
+.viewport {
+	position: relative;
+	overflow: hidden;
+	min-height: 100%;
+	height: auto;
+	width: 100%;
+}
+.app-menu {
+	position: absolute;
+	left: -260px;
+	top: 0;
+	background-color: #333;
+	overflow: hidden;
+	min-height: 100%;
+	width: 260px;
+	@include transition(all .3s ease-in-out);
+	@include translate(0, 0);
+
+	.app-search {
+		padding: $base-line-height-em/2;
+		height: 54px;
+		background-color: #272C2F;
+		background-image: -moz-linear-gradient(top,#353C3F,#121416);
+		background-image: -ms-linear-gradient(top,#353C3F,#121416);
+		background-image: -webkit-gradient(linear,0 0,0 100%,from(#353C3F),to(#121416));
+		background-image: -webkit-linear-gradient(top,#353C3F,#121416);
+		background-image: -o-linear-gradient(top,#353C3F,#121416);
+		background-image: linear-gradient(top,#353C3F,#121416);
+		background-repeat: repeat-x;
+		filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#353c3f',endColorstr='#121416',GradientType=0);
+
+		@include box-shadow(#4C575B 0 1px 0 inset,0 1px 0 rgba(255, 255, 255, 0.1));
+		width: 100%;
+		position: relative;
+
+		input {
+			@include border-radius(30px);
+			@include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.2),0 1px 0 rgba(255, 255, 255, 0.1));
+			@include box-sizing(border-box);
+			-webkit-appearance: none;
+
+			background: #333;
+			border: 1px solid rgba(0, 0, 0, 0.3);
+			color: #FFF;
+			font-size: 1.167em;
+			height: 30px;
+			outline: 0;
+			padding-left: 25px;
+			text-shadow: rgba(0, 0, 0, 0.5) 0 -1px 0;
+			width: 100%;
+		}
+	}
+	ul {
+		margin: 0;
+		padding: 0;
+	}
+	li a {
+		color: #FFF;
+		display: block;
+		font-size: 1.167em;
+		padding: $base-line-height-em/2 $base-line-height-em;
+		text-decoration: none;
+		text-shadow: none;
+
+		@include box-shadow(inset 0 -1px 0 rgba(0, 0, 0, 0.5),0 1px 0 rgba(255, 255, 255, 0.1));
+	}
+}
+.app-main {
+	min-height: 480px;
+	@include transition(all .3s ease-in-out);
+	@include translate(0, 0);
+}
+
+.loading {
+	height: 50px;
+	position: absolute;
+	margin: 0 auto;
+	top: 80px;
+	width: 100%;
+
+	.spinner {
+		margin: 0 auto;
+		width: 50px;
+	}
+}
 
 .container {
-	padding: 0.75em; 
+	padding: $base-line-height-em/2; 
 }
 
 .app-header {
 	background: #333;
 	color: #FFF;
-	padding: 0.75em; 
+	padding: $base-line-height-em/2;
 	text-shadow: none;
+	.button {
+		float: left;
+	}
 	h1 {
 		margin: 0;
 	}

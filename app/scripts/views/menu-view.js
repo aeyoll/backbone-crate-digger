@@ -4,10 +4,10 @@ crateDigger.Views.menuView = Backbone.View.extend({
 	initialize: function(a) {
 		this.header = a.header;
 
-		// var f = this;
-		// $(this.el).swipeLeft(function () {
-		// 	f.header.toggleViewport();
-		// });
+		var that = this;
+		$(this.el).swipeLeft(function () {
+			that.header.toggleViewport();
+		});
 	},
 	events: {
 		'click a': 'toggleViewport',

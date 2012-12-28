@@ -16,35 +16,54 @@
 			<p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
 		<![endif]-->
 		
-		<div id="viewport">
-			<header class="app-header container">
-				<h1>Crate Digger</h1>
-			</header>
-			<nav id="menu">
-				<a href="/">Home</a>
-				<a href="#/wantlist">Wantlist</a>
-			</nav>
-			<div id="wantlist" class="container"></div>
+		<div id="viewport" class="viewport">
+			<nav id="menu" class="app-menu"></nav>
+			<div id="main" class="app-main">
+				<header id="header" class="app-header container"></header>
+				<div id="content" class="app-content container"></div>
+			</div>
+			<div id="loading" class="loading"></div>
 		</div>
 
 		<!-- Add your site or application content here -->
+
+		<script id="headerTemplate" type="text/template">
+		    <a href="#menu" class="button menu"><span class="icon menu">Menu</span></a>
+			<h1>Crate Digger</h1>
+		</script>
+
+		<script id="menuTemplate" type="text/template">
+			<div id="search" class="app-search">
+				<form>
+					<input type="search" placeholder="Rechercher" name="query">
+					<label class="icon search"></label>
+				</form>
+			</div>
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="#/collection">Collection</a></li>
+				<li><a href="#/wantlist">Wantlist</a></li>
+			</ul>
+		</script>
+
 		<script id="releaseTemplate" type="text/template">
-			<span class="pull-left"><img src="<%= thumb %>" alt="<%= title %>" itemprop="image" /></span>
+			<!-- <span class="pull-left"><img src="<%= thumb %>" alt="<%= title %>" itemprop="image" /></span> -->
 			<div class="media-body">
 				<h2 itemprop="name" class="release-title"><% _.each(artists, function(artist) { %> <%= artist.name %> <% }); %> - <%= title %></h2>
-				<p><% _.each(formats, function(format) { %> <%= format.name %> <% }); %>, <%= year %></p>
+				<p><% _.each(formats, function(format) { %> <% _.each(format.descriptions, function(format_description) { %> <%= format_description %> <% }); %> <%= format.name %><% }); %>, <%= year %></p>
 			</div>
 		</script>
 
 		<!-- build:js scripts/scripts.js -->
-		<script src="scripts/vendor/jquery.min.js"></script>
 		<script src="scripts/vendor/zepto.min.js"></script>
 		<script src="scripts/vendor/lodash.min.js"></script>
 		<script src="scripts/vendor/backbone-min.js"></script>
 		<script src="scripts/vendor/backbone.localStorage.js"></script>
+		<script src="scripts/vendor/spin.min.js"></script>
 		<script src="scripts/main.js"></script>
 
 		<script src="scripts/views/application-view.js"></script>
+		<script src="scripts/views/collection-view.js"></script>
 		<script src="scripts/views/header-view.js"></script>
 		<script src="scripts/views/menu-view.js"></script>
 		<script src="scripts/views/release-view.js"></script>
@@ -54,6 +73,7 @@
 		<script src="scripts/models/release-model.js"></script>
 
 		<script src="scripts/collections/application-collection.js"></script>
+		<script src="scripts/collections/collection-collection.js"></script>
 		<script src="scripts/collections/wantlist-collection.js"></script>
 
 		<script src="scripts/routes/application-router.js"></script>

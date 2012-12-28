@@ -19,7 +19,7 @@ crateDigger.Collections.SearchCollection = Backbone.Collection.extend({
 		return 'http://api.discogs.com/database/search?type=release&q=' + this.query;
 	},
 	initialize: function (models, options) {
-		this.query = options.query;
+		this.query = _.escape(options.query);
 	},
 	parse: function(data) {
 		var releases = this.models;

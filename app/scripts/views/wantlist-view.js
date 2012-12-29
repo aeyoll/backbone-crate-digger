@@ -2,7 +2,7 @@ crateDigger.Views.wantlistView = Backbone.View.extend({
 	el: $('#content'),
 	initialize: function () {
 		this.$el.empty();
-		this.collection = new crateDigger.Collections.WantlistCollection([], { username : "aeyoll" });
+		this.collection = new crateDigger.Collections.WantlistCollection([], { username : crateDigger.session.get('username') });
 		this.listenTo(this.collection, 'add', this.renderRelease);
 		this.listenTo(this.collection, 'reset', this.renderWantlist);
 		this.listenTo(this.collection, 'all', this.render);

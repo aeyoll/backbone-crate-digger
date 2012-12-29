@@ -9,6 +9,7 @@ crateDigger.Views.searchView = Backbone.View.extend({
 		this.collection.fetch();
 	},
 	render: function () {
+
 	},
 	renderRelease: function (item) {
 		var releaseView = new crateDigger.Views.releaseView({
@@ -17,6 +18,7 @@ crateDigger.Views.searchView = Backbone.View.extend({
 		$('#content').append(releaseView.render().el);
 	},
 	renderSearch: function() {
+		$('#content').empty();
 		this.collection.each(this.renderRelease);
 	}
 });

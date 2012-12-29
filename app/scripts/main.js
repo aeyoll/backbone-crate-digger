@@ -25,6 +25,9 @@ window.crateDigger = {
 					$(this).removeClass('pressed');
 				}
 			});
+		},
+		trim: function(string) {
+			return string.replace(/^\s+/g,'').replace(/\s+$/g,'');
 		}
 	},
 	init: function() {

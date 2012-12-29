@@ -6,13 +6,7 @@ crateDigger.Collections.SearchCollection = Backbone.Collection.extend({
 			type: 'GET',
 			dataType: 'jsonp',
 			url: model.url(),
-			processData: false,
-			beforeSend: function () {
-				$('#loading').show();
-			},
-			complete: function () {
-				$('#loading').hide();
-			}
+			processData: false
 		}, options);
 		return $.ajax(params);
 	},

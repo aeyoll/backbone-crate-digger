@@ -12,7 +12,16 @@ window.crateDigger = {
 		},
 		loading: function() {
 			(new Spinner()).spin(document.getElementById('loading'));
-			$('#loading').hide();
+			$('#loading').show();
+			$(document).on('ajaxComplete', function () {
+				$('#loading').hide();
+			});
+			$(document).on('ajaxStart', function () {
+				$('#loading').show();
+			});
+			$(document).on('ajaxError', function () {
+				$('#loading').hide();
+			});
 		},
 		touch: function() {
 			$('a').on('touchstart', function () {

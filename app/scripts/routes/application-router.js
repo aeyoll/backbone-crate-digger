@@ -7,6 +7,7 @@ crateDigger.Routers.ApplicationRouter = Backbone.Router.extend({
 		'wantlist': 'wantlist'
 	},
 	index: function() {
+		$('#loading').hide();
 	},
 	collection: function() {
 		var collection = new crateDigger.Views.collectionView();

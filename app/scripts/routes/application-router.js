@@ -8,6 +8,10 @@ crateDigger.Routers.ApplicationRouter = Backbone.Router.extend({
 	},
 	index: function() {
 		$('#loading').hide();
+		if (!this.username) {
+			this.views.login = new crateDigger.Views.loginView();
+			this.views.login.render();
+		}
 	},
 	collection: function() {
 		var collection = new crateDigger.Views.collectionView();
@@ -22,7 +26,10 @@ crateDigger.Routers.ApplicationRouter = Backbone.Router.extend({
 		wantlist.render();
 	},
 	initialize: function() {
-		this.views.header = new crateDigger.Views.headerView();
+		this.username = crateDigger.session.get('username');
+		this.views.header = new crateDigger.Views.headerView({
+			username: this.username
+		});
 		this.views.menu = new crateDigger.Views.menuView({
 			header: this.views.header
 		});

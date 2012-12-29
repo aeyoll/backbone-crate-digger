@@ -1,15 +1,18 @@
 crateDigger.Views.headerView = Backbone.View.extend({
 	el: $('#header'),
 	template: $('#headerTemplate').html(),
-	initialize: function () {
+	initialize: function (a) {
 		_.bindAll(this, 'toggleViewport');
+		this.username = a.username;
 	},
 	events: {
 		'click header .button': 'toggleViewport'
 	},
 	render: function() {
 		var tmpl = _.template(this.template);
-		this.$el.html(tmpl);
+		this.$el.html(tmpl({
+			username: this.username
+		}));
 		return this;
 	},
 	toggleViewport: function (a) {

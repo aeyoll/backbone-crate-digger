@@ -23,6 +23,19 @@ window.crateDigger = {
 				$('#loading').hide();
 			});
 		},
+		session: function (a) {
+			crateDigger.utils.session.prototype.set = function (f) {
+				var d = JSON.parse(localStorage.getItem(a)) || {};
+				f = _.extend(d, f);
+				localStorage.setItem(a, JSON.stringify(f));
+			};
+			crateDigger.utils.session.prototype.get = function (f) {
+				return (JSON.parse(localStorage.getItem(a)) || {})[f];
+			};
+			crateDigger.utils.session.prototype.destroy = function () {
+				localStorage.setItem(a, null);
+			};
+		},
 		touch: function() {
 			$('a').on('touchstart', function () {
 				if (!$(this).hasClass('pressed')) {
@@ -48,6 +61,7 @@ $(document).ready(function(){
 	crateDigger.init();
 	crateDigger.utils.loading();
 	crateDigger.utils.touch();
+	crateDigger.session = new crateDigger.utils.session('CrateDigger-Session');
 	
 	router = new crateDigger.Routers.ApplicationRouter();
 	Backbone.history.start();

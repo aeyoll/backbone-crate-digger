@@ -8,13 +8,19 @@ crateDigger.Collections.WantlistCollection = Backbone.Collection.extend({
 			url: model.url(),
 			processData: false
 		}, options);
-		return $.ajax(params);
+		if (typeof params.url !== 'undefined') {
+			return $.ajax(params);
+		}
 	},
 	url : function() {
-		return 'http://api.discogs.com/users/' + this.username + '/wants';
+		if (typeof this.username !== 'undefined') {
+			return 'http://api.discogs.com/users/' + this.username + '/wants';
+		}
 	},
 	initialize: function (models, options) {
-		this.username = options.username;
+		if (typeof options !== 'undefined') {
+			this.username = options.username;
+		}
 	},
 	parse: function(data) {
 		var releases = this.models;

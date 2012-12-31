@@ -15,7 +15,11 @@
   <script src="lib/chai.js"></script>
     
       
-  <script>expect = chai.expect</script>
+  <script>
+    expect = chai.expect;
+    assert = chai.assert;
+    should = chai.should();
+  </script>
       
     
   
@@ -23,20 +27,108 @@
   <!-- -->
 
   <!-- include source files here... -->
+    <script src="scripts/vendor/zepto.min.js"></script>
+    <script src="scripts/vendor/lodash.min.js"></script>
+    <script src="scripts/vendor/backbone-min.js"></script>
+    <script src="scripts/vendor/backbone.localStorage.js"></script>
+    <script src="scripts/vendor/spin.min.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/main.js"></script>
+
+    <script src="scripts/views/application-view.js"></script>
+    <script src="scripts/views/collection-view.js"></script>
+    <script src="scripts/views/header-view.js"></script>
+    <script src="scripts/views/login-view.js"></script>
+    <script src="scripts/views/menu-view.js"></script>
+    <script src="scripts/views/release-view.js"></script>
+    <script src="scripts/views/search-view.js"></script>
+    <script src="scripts/views/wantlist-view.js"></script>
+
+    <script src="scripts/models/application-model.js"></script>
+    <script src="scripts/models/release-model.js"></script>
+
+    <script src="scripts/collections/application-collection.js"></script>
+    <script src="scripts/collections/collection-collection.js"></script>
+    <script src="scripts/collections/search-collection.js"></script>
+    <script src="scripts/collections/wantlist-collection.js"></script>
+
+    <script src="scripts/routes/application-router.js"></script>
+
 
   <!-- include spec files here... -->
   <script>
+
   // replace this by your own specs
   (function() {
-    describe('Give it some context', function() {
-      describe('maybe a bit more context here', function() {
+    describe('Application', function() {
 
-        it('should run here few assertions', function() {
-
+      describe('#checkModels()', function() {
+        it('should have models', function() {
+          crateDigger.should.have.property('Models');
         });
+      });
 
+      describe('#checkCollections()', function() {
+        it('should have collections', function() {
+          crateDigger.should.have.property('Collections');
+        });
+      });
+
+      describe('#checkViews()', function() {
+        it('should have views', function() {
+          crateDigger.should.have.property('Views');
+        });
+      });
+
+      describe('#checkRouter()', function() {
+        it('should have router', function() {
+          crateDigger.should.have.property('Routers');
+        });
       });
     });
+
+    describe('Utils', function() {
+
+      describe('#session()', function() {
+        it('should read and write to localStorage', function() {
+          // new session
+          crateDigger.session = new crateDigger.utils.session('CrateDigger-Session');
+
+          // read/write
+          var value = 'test';
+          crateDigger.session.set({
+            test: value
+          });
+          expect(crateDigger.session.get('test')).to.equal('test');
+
+          // destroy
+          crateDigger.session.destroy('test');
+          expect(crateDigger.session.get('test')).to.equal(undefined);
+        });
+      });
+
+      describe('#trim()', function() {
+        it('should return the correct trimmed string', function() {
+          crateDigger.utils.trim(' ').should.have.length(0);
+          crateDigger.utils.trim('a').should.have.length(1);
+          crateDigger.utils.trim('a ').should.have.length(1);
+        });
+      });
+
+      describe('#vendor()', function() {
+        it('should return an object with prefixed values', function() {
+          var vendor = crateDigger.utils.vendor('border-radius', '5px');
+          vendor.should.be.a('Object');
+          vendor.should.have.property('-moz-border-radius').with.equal('5px');
+          vendor.should.have.property('-ms-border-radius').with.equal('5px');
+          vendor.should.have.property('-o-border-radius').with.equal('5px');
+          vendor.should.have.property('-webkit-border-radius').with.equal('5px');
+          vendor.should.have.property('border-radius').with.equal('5px');
+        });
+      });
+
+    })
+
   })();
   </script>
 

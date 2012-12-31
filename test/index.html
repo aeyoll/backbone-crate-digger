@@ -57,15 +57,33 @@
 
   <!-- include spec files here... -->
   <script>
+
   // replace this by your own specs
   (function() {
-    describe('Give it some context', function() {
-      describe('maybe a bit more context here', function() {
+    describe('Application', function() {
 
-        it('should run here few assertions', function() {
-
+      describe('#checkModels()', function() {
+        it('should have models', function() {
+          crateDigger.should.have.property('Models');
         });
+      });
 
+      describe('#checkCollections()', function() {
+        it('should have collections', function() {
+          crateDigger.should.have.property('Collections');
+        });
+      });
+
+      describe('#checkViews()', function() {
+        it('should have views', function() {
+          crateDigger.should.have.property('Views');
+        });
+      });
+
+      describe('#checkRouter()', function() {
+        it('should have router', function() {
+          crateDigger.should.have.property('Routers');
+        });
       });
     });
   })();

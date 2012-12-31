@@ -86,6 +86,49 @@
         });
       });
     });
+
+    describe('Utils', function() {
+
+      describe('#session()', function() {
+        it('should read and write to localStorage', function() {
+          // new session
+          crateDigger.session = new crateDigger.utils.session('CrateDigger-Session');
+
+          // read/write
+          var value = 'test';
+          crateDigger.session.set({
+            test: value
+          });
+          expect(crateDigger.session.get('test')).to.equal('test');
+
+          // destroy
+          crateDigger.session.destroy('test');
+          expect(crateDigger.session.get('test')).to.equal(undefined);
+        });
+      });
+
+      describe('#trim()', function() {
+        it('should return the correct trimmed string', function() {
+          crateDigger.utils.trim(' ').should.have.length(0);
+          crateDigger.utils.trim('a').should.have.length(1);
+          crateDigger.utils.trim('a ').should.have.length(1);
+        });
+      });
+
+      describe('#vendor()', function() {
+        it('should return an object with prefixed values', function() {
+          var vendor = crateDigger.utils.vendor('border-radius', '5px');
+          vendor.should.be.a('Object');
+          vendor.should.have.property('-moz-border-radius').with.equal('5px');
+          vendor.should.have.property('-ms-border-radius').with.equal('5px');
+          vendor.should.have.property('-o-border-radius').with.equal('5px');
+          vendor.should.have.property('-webkit-border-radius').with.equal('5px');
+          vendor.should.have.property('border-radius').with.equal('5px');
+        });
+      });
+
+    })
+
   })();
   </script>
 
